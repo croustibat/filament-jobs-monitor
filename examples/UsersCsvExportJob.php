@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
+use Croustibat\FilamentJobsMonitor\Traits\QueueProgress;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Database\Eloquent\Collection;
-use Croustibat\FilamentJobsMonitor\Traits\QueueProgress;
 
 class UsersCsvExportJob implements ShouldQueue
 {
@@ -32,8 +32,6 @@ class UsersCsvExportJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param  Collection  $data
-     * @param  string  $filename
      * @return void
      */
     public function __construct(Collection $data, string $filename)
@@ -67,7 +65,6 @@ class UsersCsvExportJob implements ShouldQueue
 
         $this->setProgress(80);
 
-
         // Rewind the stream pointer to the beginning
         rewind($stream);
 
@@ -88,6 +85,4 @@ class UsersCsvExportJob implements ShouldQueue
 
         $this->setProgress(100);
     }
-
-
 }
