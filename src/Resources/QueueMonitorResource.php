@@ -60,12 +60,6 @@ class QueueMonitorResource extends Resource
                 Tables\Columns\TextColumn::make('started_at')
                     ->since(),
             ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
