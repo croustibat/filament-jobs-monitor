@@ -31,9 +31,38 @@ php artisan vendor:publish --tag="queue-monitor-provider"
 
 ## Usage
 
+Just run a Background Job and go to the route `/admin/queue-monitors` to see the jobs. 
+
+## Example
+
+Go to [example](./examples/) folder to see a Job example file.
+
+Then you can call your Job with the following code :
+
 ```php
-$filament-jobs-monitor = new Croustibat\FilamentJobsMonitor();
-echo $filament-jobs-monitor->echoPhrase('Hello, Croustibat!');
+    public static function table(Table $table): Table
+    {
+        return $table
+        
+        // rest of your code
+        ...
+
+        ->bulkActions([
+            BulkAction::make('export-jobs')
+            ->label('Background Export')
+            ->icon('heroicon-o-cog')
+            ->action(function (Collection $records) {
+                UsersCsvExportJob::dispatch($records, 'users.csv');
+                Notification::make()
+                    ->title('Export is ready')
+                    ->body('Your export is ready. You can download it from the exports page.')
+                    ->success()
+                    ->seconds(5)
+                    ->icon('heroicon-o-inbox-in')
+                    ->send();
+            })
+        ])
+    }
 ```
 
 ## Changelog

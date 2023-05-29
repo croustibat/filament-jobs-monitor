@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Traits;
+namespace Croustibat\FilamentJobsMonitor\Traits;
 
-use App\Models\QueueMonitor;
+use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 
 trait QueueProgress
 {
