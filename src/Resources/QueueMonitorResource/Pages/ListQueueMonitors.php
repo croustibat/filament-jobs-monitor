@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\QueueMonitorResource\Pages;
+namespace Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
 
-use App\Filament\Resources\QueueMonitorResource;
-use App\Filament\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
+use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource;
+use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
 use Filament\Resources\Pages\ListRecords;
 
 class ListQueueMonitors extends ListRecords

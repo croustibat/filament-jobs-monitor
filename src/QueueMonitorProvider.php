@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace Croustibat\FilamentJobsMonitor;
 
-use App\Models\QueueMonitor;
+use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Illuminate\Contracts\Queue\Job as JobContract;
 use Illuminate\Queue\Events\JobExceptionOccurred;
 use Illuminate\Queue\Events\JobFailed;

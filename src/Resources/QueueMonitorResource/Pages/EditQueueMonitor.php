@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\QueueMonitorResource\Pages;
+namespace Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
 
-use App\Filament\Resources\QueueMonitorResource;
+use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 

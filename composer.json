@@ -16,63 +16,35 @@
         }
     ],
     "require": {
-        "php": "^8.0 || ^8.1 || ^8.2",
+        "php": "^8.0",
         "filament/filament": "^2.0",
-        "illuminate/contracts": "^9.0",
+        "illuminate/contracts": "^9.0 || ^10.0",
         "ryangjchandler/filament-progress-column": "^0.3.2",
         "spatie/laravel-package-tools": "^1.13.5"
     },
     "require-dev": {
-        "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^6.0",
-        "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^7.0",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.1",
-        "pestphp/pest-plugin-livewire": "^1.0",
-        "pestphp/pest-plugin-parallel": "^0.3",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5",
-        "spatie/laravel-ray": "^1.26"
+        "laravel/pint": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Croustibat\\FilamentJobsMonitor\\": "src",
-            "Croustibat\\FilamentJobsMonitor\\Database\\Factories\\": "database/factories"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Croustibat\\FilamentJobsMonitor\\Tests\\": "tests"
+            "Croustibat\\FilamentJobsMonitor\\": "src"
         }
     },
     "scripts": {
-        "pint": "vendor/bin/pint",
-        "test:pest": "vendor/bin/pest --parallel",
-        "test:phpstan": "vendor/bin/phpstan analyse",
-        "test": [
-            "@test:pest",
-            "@test:phpstan"
-        ]
+        "pint": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
+            "composer/package-versions-deprecated": true
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Croustibat\\FilamentJobsMonitor\\FilamentJobsMonitorServiceProvider"
-            ],
-            "aliases": {
-                "FilamentJobsMonitor": "Croustibat\\FilamentJobsMonitor\\Facades\\FilamentJobsMonitor"
-            }
+                "Croustibat\\FilamentJobsMonitor\\FilamentJobsMonitorServiceProvider",
+                "Croustibat\\FilamentJobsMonitor\\QueueMonitorProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
