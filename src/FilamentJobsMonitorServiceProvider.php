@@ -17,7 +17,6 @@ class FilamentJobsMonitorServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         $package->name(static::$name)
-            ->publishesServiceProvider('QueueMonitorProvider')
             ->hasMigration('create_filament-jobs-monitor_table');
     }
 }

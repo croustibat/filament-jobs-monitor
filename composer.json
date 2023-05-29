@@ -44,7 +44,10 @@
             "providers": [
                 "Croustibat\\FilamentJobsMonitor\\FilamentJobsMonitorServiceProvider",
                 "Croustibat\\FilamentJobsMonitor\\QueueMonitorProvider"
-            ]
+            ],
+            "aliases": {
+                "QueueMonitor": "Croustibat\\FilamentJobsMonitor\\QueueMonitorProvider\\Facade"
+            }
         }
     },
     "minimum-stability": "dev",
