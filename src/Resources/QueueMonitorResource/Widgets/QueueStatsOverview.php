@@ -24,7 +24,7 @@ class QueueStatsOverview extends BaseWidget
         return [
             Card::make('Total Jobs Executed', $aggregatedInfo->count ?? 0),
             Card::make('Total Execution Time', ($aggregatedInfo->total_time_elapsed ?? 0).'s'),
-            Card::make('Average Execution Time', $aggregatedInfo->average_time_elapsed ?? 0),
+            Card::make('Average Execution Time', ceil($aggregatedInfo->average_time_elapsed).'s' ?? 0),
         ];
     }
 }

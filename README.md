@@ -21,14 +21,6 @@ php artisan vendor:publish --tag="filament-jobs-monitor-migrations"
 php artisan migrate
 ```
 
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="queue-monitor-provider"
-```
-
-
 ## Usage
 
 Just run a Background Job and go to the route `/admin/queue-monitors` to see the jobs. 

@@ -82,8 +82,6 @@ class QueueMonitorResource extends Resource
     {
         return [
             'index' => Pages\ListQueueMonitors::route('/'),
-            'create' => Pages\CreateQueueMonitor::route('/create'),
-            'edit' => Pages\EditQueueMonitor::route('/{record}/edit'),
         ];
     }
 
