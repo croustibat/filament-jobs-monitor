@@ -2,9 +2,9 @@
 
 namespace Croustibat\FilamentJobsMonitor\Resources;
 
+use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
-use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;

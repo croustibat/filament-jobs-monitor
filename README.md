@@ -50,7 +50,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Baptiste](https://github.com/croustibat)
+- [Croustibat](https://github.com/croustibat)
 - [All Contributors](../../contributors)
 
 ## License

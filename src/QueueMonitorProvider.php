@@ -40,9 +40,6 @@ class QueueMonitorProvider extends ServiceProvider
 
     /**
      * Get Job ID.
-     *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
-     * @return string|int
      */
     public static function getJobId(JobContract $job): string|int
     {
@@ -51,9 +48,6 @@ class QueueMonitorProvider extends ServiceProvider
 
     /**
      * Start Queue Monitoring for Job.
-     *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
-     * @return void
      */
     protected static function jobStarted(JobContract $job): void
     {
@@ -83,11 +77,6 @@ class QueueMonitorProvider extends ServiceProvider
 
     /**
      * Finish Queue Monitoring for Job.
-     *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
-     * @param  bool  $failed
-     * @param  \Throwable|null  $exception
-     * @return void
      */
     protected static function jobFinished(JobContract $job, bool $failed = false, ?\Throwable $exception = null): void
     {
