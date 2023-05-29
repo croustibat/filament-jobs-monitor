@@ -1,11 +1,11 @@
 {
     "private": true,
     "scripts": {
-        "dev:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/skeleton.css --postcss --watch",
-        "dev:scripts": "esbuild resources/js/plugin.js --bundle --sourcemap=inline --outfile=resources/dist/skeleton.js --watch",
-        "build:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/skeleton.css --postcss --minify && npm run purge",
-        "build:scripts": "esbuild resources/js/plugin.js --bundle --minify --outfile=resources/dist/skeleton.js",
-        "purge": "filament-purge -i resources/dist/skeleton.css -o resources/dist/skeleton.css",
+        "dev:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/filament-jobs-monitor.css --postcss --watch",
+        "dev:scripts": "esbuild resources/js/plugin.js --bundle --sourcemap=inline --outfile=resources/dist/filament-jobs-monitor.js --watch",
+        "build:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/filament-jobs-monitor.css --postcss --minify && npm run purge",
+        "build:scripts": "esbuild resources/js/plugin.js --bundle --minify --outfile=resources/dist/filament-jobs-monitor.js",
+        "purge": "filament-purge -i resources/dist/filament-jobs-monitor.css -o resources/dist/filament-jobs-monitor.css",
         "dev": "npm-run-all --parallel dev:*",
         "build": "npm-run-all build:*"
     },

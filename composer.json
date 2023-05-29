@@ -1,25 +1,26 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "croustibat/filament-jobs-monitor",
+    "description": "Background Jobs monitoring like Horizon for all drivers for FilamentPHP",
     "keywords": [
-        ":vendor_name",
+        "croustibat",
         "laravel",
-        ":package_slug"
+        "filament-jobs-monitor"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/croustibat/filament-jobs-monitor",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Baptiste",
+            "email": "baptiste@derniercri.io",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.0 || ^8.1 || ^8.2",
         "filament/filament": "^2.0",
-        "spatie/laravel-package-tools": "^1.13.5",
-        "illuminate/contracts": "^9.0"
+        "illuminate/contracts": "^9.0",
+        "ryangjchandler/filament-progress-column": "^0.3.2",
+        "spatie/laravel-package-tools": "^1.13.5"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -38,13 +39,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Croustibat\\FilamentJobsMonitor\\": "src",
+            "Croustibat\\FilamentJobsMonitor\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Croustibat\\FilamentJobsMonitor\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -67,10 +68,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Croustibat\\FilamentJobsMonitor\\FilamentJobsMonitorServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentJobsMonitor": "Croustibat\\FilamentJobsMonitor\\Facades\\FilamentJobsMonitor"
             }
         }
     },
