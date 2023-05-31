@@ -72,6 +72,17 @@ class QueueMonitorResource extends Resource
         ];
     }
 
+    protected static function getNavigationGroup(): ?string
+    {
+        return config('filament-jobs-monitor.labels.navigation_group');
+    }
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return true;
+        return (bool) config('filament-jobs-monitor.navigation_enabled');
+    }
+
     public static function getPages(): array
     {
         return [

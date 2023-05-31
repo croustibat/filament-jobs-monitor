@@ -2,5 +2,9 @@
 
 // config for Croustibat/FilamentJobsMonitor
 return [
+    'navigation_enabled' => true,
 
+    'labels' => [
+        'navigation_group' => 'Settings',
+    ],
 ];
