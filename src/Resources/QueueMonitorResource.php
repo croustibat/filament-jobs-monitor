@@ -79,7 +79,6 @@ class QueueMonitorResource extends Resource
 
     protected static function shouldRegisterNavigation(): bool
     {
-        return true;
         return (bool) config('filament-jobs-monitor.navigation_enabled');
     }
 
