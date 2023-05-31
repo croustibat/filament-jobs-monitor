@@ -16,8 +16,6 @@ class QueueMonitorResource extends Resource
 {
     protected static ?string $model = QueueMonitor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
-
     public static function form(Form $form): Form
     {
         return $form
