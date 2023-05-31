@@ -7,4 +7,8 @@ return [
     'labels' => [
         'navigation_group' => 'Settings',
     ],
+
+    'icons' => [
+        'navigation' => 'heroicon-o-chip',
+    ],
 ];
