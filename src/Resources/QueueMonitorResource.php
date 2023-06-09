@@ -72,7 +72,7 @@ class QueueMonitorResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return config('filament-jobs-monitor.labels.navigation_group');
+        return config('filament-jobs-monitor.navigation.group_label');
     }
 
     protected static function shouldRegisterNavigation(): bool
