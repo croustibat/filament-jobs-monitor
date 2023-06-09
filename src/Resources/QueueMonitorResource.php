@@ -82,7 +82,7 @@ class QueueMonitorResource extends Resource
 
     protected static function getNavigationIcon(): string
     {
-        return config('filament-jobs-monitor.icons.navigation');
+        return config('filament-jobs-monitor.navigation.icon');
     }
 
     public static function getPages(): array
