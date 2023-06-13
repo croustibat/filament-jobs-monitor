@@ -16,8 +16,6 @@ class QueueMonitorResource extends Resource
 {
     protected static ?string $model = QueueMonitor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
-
     public static function form(Form $form): Form
     {
         return $form
@@ -70,6 +68,21 @@ class QueueMonitorResource extends Resource
         return [
             //
         ];
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return config('filament-jobs-monitor.navigation.group_label');
+    }
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return (bool) config('filament-jobs-monitor.navigation.enabled');
+    }
+
+    protected static function getNavigationIcon(): string
+    {
+        return config('filament-jobs-monitor.navigation.icon');
     }
 
     public static function getPages(): array
