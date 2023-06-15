@@ -6,11 +6,12 @@ use Illuminate\Contracts\Queue\Job as JobContract;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Support\Facades\Hash;
 
 class QueueMonitor extends Model
 {
-    use HasFactory;
+    use HasFactory, Prunable;
 
     protected $fillable = [
         'job_id',
@@ -93,5 +94,15 @@ class QueueMonitor extends Model
         }
 
         return ! $this->hasFailed();
+    }
+
+    /**
+     * Get the prunable model query.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function prunable()
+    {
+        return static::where('created_at', '<=', now()->subDays(config('filament-jobs-monitor.navigation.retention_days')));
     }
 }

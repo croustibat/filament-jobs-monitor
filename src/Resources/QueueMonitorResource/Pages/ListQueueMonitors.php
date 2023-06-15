@@ -12,8 +12,7 @@ class ListQueueMonitors extends ListRecords
 
     protected function getActions(): array
     {
-        return [
-        ];
+        return [];
     }
 
     protected function getHeaderWidgets(): array
@@ -21,5 +20,10 @@ class ListQueueMonitors extends ListRecords
         return [
             QueueStatsOverview::class,
         ];
+    }
+
+    protected function getTitle(): string
+    {
+        return __('filament-jobs-monitor::translations.title');
     }
 }
