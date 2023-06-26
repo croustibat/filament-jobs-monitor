@@ -89,11 +89,11 @@ class QueueMonitor extends Model
      */
     public function hasSucceeded(): bool
     {
-        if (! $this->isFinished()) {
+        if (!$this->isFinished()) {
             return false;
         }
 
-        return ! $this->hasFailed();
+        return !$this->hasFailed();
     }
 
     /**
@@ -103,6 +103,9 @@ class QueueMonitor extends Model
      */
     public function prunable()
     {
-        return static::where('created_at', '<=', now()->subDays(config('filament-jobs-monitor.navigation.retention_days')));
+        if (config('filament-jobs-monitor.pruning.activate')) {
+            return static::where('created_at', '<=', now()->subDays(config('filament-jobs-monitor.pruning.retention_days')));
+        }
+        return false;
     }
 }
