@@ -29,21 +29,15 @@ trait QueueProgress
      */
     protected function getQueueMonitor(): ?QueueMonitor
     {
-        if (! property_exists($this, 'job')) {
+        if (
+            ! property_exists($this, 'job')
+            || ! $this->job
+            || ! $jobId = QueueMonitor::getJobId($this->job)
+        ) {
             return null;
         }
 
-        if (! $this->job) {
-            return null;
-        }
-
-        if (! $jobId = QueueMonitor::getJobId($this->job)) {
-            return null;
-        }
-
-        $model = QueueMonitor::getModel();
-
-        return $model::whereJobId($jobId)
+        return QueueMonitor::getModel()::whereJobId($jobId)
             ->orderBy('started_at', 'desc')
             ->first();
     }

@@ -2,6 +2,7 @@
 
 namespace Croustibat\FilamentJobsMonitor\Resources;
 
+use Config;
 use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
@@ -72,17 +73,17 @@ class QueueMonitorResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return config('filament-jobs-monitor.navigation.group_label');
+        return Config::get('filament-jobs-monitor.navigation.group_label');
     }
 
     protected static function shouldRegisterNavigation(): bool
     {
-        return (bool) config('filament-jobs-monitor.navigation.enabled');
+        return (bool) Config::get('filament-jobs-monitor.navigation.enabled');
     }
 
     protected static function getNavigationIcon(): string
     {
-        return config('filament-jobs-monitor.navigation.icon');
+        return Config::get('filament-jobs-monitor.navigation.icon');
     }
 
     public static function getPages(): array
