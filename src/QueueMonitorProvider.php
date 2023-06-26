@@ -2,6 +2,7 @@
 
 namespace Croustibat\FilamentJobsMonitor;
 
+use Carbon\Carbon;
 use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Illuminate\Contracts\Queue\Job as JobContract;
 use Illuminate\Queue\Events\JobExceptionOccurred;
@@ -51,7 +52,7 @@ class QueueMonitorProvider extends ServiceProvider
      */
     protected static function jobStarted(JobContract $job): void
     {
-        $now = now();
+        $now = Carbon::now();
         $jobId = self::getJobId($job);
 
         $monitor = QueueMonitor::query()->create([
@@ -69,7 +70,7 @@ class QueueMonitorProvider extends ServiceProvider
             ->where('failed', false)
             ->whereNull('finished_at')
             ->each(function (QueueMonitor $monitor) {
-                $monitor->finished_at = now();
+                $monitor->finished_at = Carbon::now();
                 $monitor->failed = true;
                 $monitor->save();
             });
@@ -86,17 +87,17 @@ class QueueMonitorProvider extends ServiceProvider
             ->orderByDesc('started_at')
             ->first();
 
-        if (null === $monitor) {
+        if (! $monitor) {
             return;
         }
 
         $attributes = [
             'progress' => 100,
-            'finished_at' => now(),
+            'finished_at' => date('Y-m-d H:i:s"'),
             'failed' => $failed,
         ];
 
-        if (null !== $exception) {
+        if ($exception) {
             $attributes += [
                 'exception_message' => mb_strcut($exception->getMessage(), 0, 65535),
             ];

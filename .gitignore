@@ -9,3 +9,6 @@ phpstan.neon
 testbench.yaml
 vendor
 node_modules
+.yarn
+.yarnrc.yml
+.vscode
