@@ -7,4 +7,8 @@ return [
         'group_label' => 'Settings',
         'icon' => 'heroicon-o-chip',
     ],
+    'pruning' =>  [
+        'activate' => true,
+        'retention_days' => 7,
+    ]
 ];

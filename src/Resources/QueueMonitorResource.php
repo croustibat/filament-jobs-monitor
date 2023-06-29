@@ -42,20 +42,25 @@ class QueueMonitorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\BadgeColumn::make('status')->enum([
-                    'failed' => 'Failed',
-                    'running' => 'Running',
-                    'succeeded' => 'Succeeded',
-                ])
+                Tables\Columns\BadgeColumn::make('status')
+                    ->label(__('filament-jobs-monitor::translations.status'))
+                    ->enum([
+                        'failed' => 'Failed',
+                        'running' => 'Running',
+                        'succeeded' => 'Succeeded',
+                    ])
                     ->colors([
-                        'secondary' => 'running',
-                        'success' => 'succeeded',
-                        'danger' => 'failed',
+                        'secondary' => __('filament-jobs-monitor::translations.running'),
+                        'success' => __('filament-jobs-monitor::translations.succeeded'),
+                        'danger' => __('filament-jobs-monitor::translations.failed'),
                     ]),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('queue'),
-                ProgressColumn::make('progress')->color('warning'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('filament-jobs-monitor::translations.name')),
+                Tables\Columns\TextColumn::make('queue')
+                    ->label(__('filament-jobs-monitor::translations.queue')),
+                ProgressColumn::make('progress')->label(__('filament-jobs-monitor::translations.progress'))->color('warning'),
                 Tables\Columns\TextColumn::make('started_at')
+                    ->label(__('filament-jobs-monitor::translations.started_at'))
                     ->since(),
             ])
             ->bulkActions([
@@ -72,7 +77,12 @@ class QueueMonitorResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return config('filament-jobs-monitor.navigation.group_label');
+        return config('filament-jobs-monitor.navigation.group_label') ? __('filament-jobs-monitor::translations.navigation_group') : null;
+    }
+
+    protected static function getNavigationLabel(): string
+    {
+        return __('filament-jobs-monitor::translations.navigation_label');
     }
 
     protected static function shouldRegisterNavigation(): bool
