@@ -1,18 +1,19 @@
 <?php
 
 return [
+    'breadcrumb' => 'Queued Jobs Monitor',
     'title' => 'Queued Jobs',
     'navigation_label' => 'Jobs',
     'navigation_group' => 'System',
     'total_jobs' => 'Total Jobs Executed',
     'execution_time' => 'Total Execution Time',
     'average_time' => 'Average Execution Time',
-    'succeeded' => 'succeeded',
-    'failed' => 'failed',
-    'running' => 'running',
+    'succeeded' => 'Succeeded',
+    'failed' => 'Failed',
+    'running' => 'Running',
     'status' => 'Status',
-    'name' => 'name',
+    'name' => 'Name',
     'queue' => 'Queue',
-    'progress' => 'progress',
+    'progress' => 'Progress',
     'started_at' => 'Started at',
 ];

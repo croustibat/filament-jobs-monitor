@@ -45,14 +45,14 @@ class QueueMonitorResource extends Resource
                 Tables\Columns\BadgeColumn::make('status')
                     ->label(__('filament-jobs-monitor::translations.status'))
                     ->enum([
-                        'failed' => 'Failed',
-                        'running' => 'Running',
-                        'succeeded' => 'Succeeded',
+                        'failed' => __('filament-jobs-monitor::translations.failed'),
+                        'running' => __('filament-jobs-monitor::translations.running'),
+                        'succeeded' => __('filament-jobs-monitor::translations.succeeded'),
                     ])
                     ->colors([
-                        'secondary' => __('filament-jobs-monitor::translations.running'),
-                        'success' => __('filament-jobs-monitor::translations.succeeded'),
-                        'danger' => __('filament-jobs-monitor::translations.failed'),
+                        'primary' => 'running',
+                        'success' => 'succeeded',
+                        'danger' => 'failed',
                     ]),
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('filament-jobs-monitor::translations.name')),
@@ -83,6 +83,11 @@ class QueueMonitorResource extends Resource
     protected static function getNavigationLabel(): string
     {
         return __('filament-jobs-monitor::translations.navigation_label');
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return __('filament-jobs-monitor::translations.breadcrumb');
     }
 
     protected static function shouldRegisterNavigation(): bool
