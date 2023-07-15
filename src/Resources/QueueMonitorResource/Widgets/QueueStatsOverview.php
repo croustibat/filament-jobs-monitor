@@ -23,8 +23,8 @@ class QueueStatsOverview extends BaseWidget
 
         return [
             Card::make(__('filament-jobs-monitor::translations.total_jobs'), $aggregatedInfo->count ?? 0),
-            Card::make(__('filament-jobs-monitor::translations.execution_time'), ($aggregatedInfo->total_time_elapsed ?? 0) . 's'),
-            Card::make(__('filament-jobs-monitor::translations.average_time'), ceil((float)$aggregatedInfo->average_time_elapsed) . 's' ?? 0),
+            Card::make(__('filament-jobs-monitor::translations.execution_time'), ($aggregatedInfo->total_time_elapsed ?? 0).'s'),
+            Card::make(__('filament-jobs-monitor::translations.average_time'), ceil((float) $aggregatedInfo->average_time_elapsed).'s' ?? 0),
         ];
     }
 }

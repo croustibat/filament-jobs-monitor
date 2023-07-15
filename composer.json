@@ -31,7 +31,7 @@
         }
     },
     "scripts": {
-        "pint": "vendor/bin/pint"
+        "lint": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,

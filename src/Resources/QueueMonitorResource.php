@@ -28,7 +28,7 @@ class QueueMonitorResource extends Resource
                 Forms\Components\TextInput::make('queue')
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('started_at')
-                     ->sortable(),
+                    ->sortable(),
                 Forms\Components\DateTimePicker::make('finished_at'),
                 Forms\Components\Toggle::make('failed')
                     ->required(),
