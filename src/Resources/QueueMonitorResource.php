@@ -53,12 +53,12 @@ class QueueMonitorResource extends Resource
                         'primary' => 'running',
                         'success' => 'succeeded',
                         'danger' => 'failed',
-                    ]),
+                    ])->sortable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->label(__('filament-jobs-monitor::translations.name')),
+                    ->label(__('filament-jobs-monitor::translations.name'))->sortable(),
                 Tables\Columns\TextColumn::make('queue')
-                    ->label(__('filament-jobs-monitor::translations.queue')),
-                ProgressColumn::make('progress')->label(__('filament-jobs-monitor::translations.progress'))->color('warning'),
+                    ->label(__('filament-jobs-monitor::translations.queue'))->sortable(),
+                ProgressColumn::make('progress')->label(__('filament-jobs-monitor::translations.progress'))->color('warning')->sortable(),
                 Tables\Columns\TextColumn::make('started_at')
                     ->label(__('filament-jobs-monitor::translations.started_at'))
                     ->since()->sortable(),
