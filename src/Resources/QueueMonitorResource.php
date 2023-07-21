@@ -36,7 +36,7 @@ class QueueMonitorResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('exception_message')
                     ->maxLength(65535),
-            ])->defaultSort('started_at', 'desc');
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -64,6 +64,7 @@ class QueueMonitorResource extends Resource
                     ->label(__('filament-jobs-monitor::translations.started_at'))
                     ->since(),
             ])
+            ->defaultSort('started_at', 'desc')
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
