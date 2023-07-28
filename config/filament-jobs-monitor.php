@@ -5,6 +5,7 @@ return [
     'navigation' => [
         'enabled' => true,
         'group_label' => 'Settings',
+        'group_sort' => '1',
         'icon' => 'heroicon-o-chip',
     ],
     'pruning' => [
