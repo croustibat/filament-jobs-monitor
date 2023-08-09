@@ -28,8 +28,7 @@ class QueueMonitorResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('queue')
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('started_at')
-                    ->sortable(),
+                Forms\Components\DateTimePicker::make('started_at'),
                 Forms\Components\DateTimePicker::make('finished_at'),
                 Forms\Components\Toggle::make('failed')
                     ->required(),
@@ -37,7 +36,7 @@ class QueueMonitorResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('exception_message')
                     ->maxLength(65535),
-            ])->defaultSort('started_at', 'desc');
+            ]);
     }
 
     public static function table(Table $table): Table
