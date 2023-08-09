@@ -8,21 +8,21 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListQueueMonitors extends ListRecords
 {
-    protected static string $resource = QueueMonitorResource::class;
+    public static string $resource = QueueMonitorResource::class;
 
-    protected function getActions(): array
+    public function getActions(): array
     {
         return [];
     }
 
-    protected function getHeaderWidgets(): array
+    public function getHeaderWidgets(): array
     {
         return [
             QueueStatsOverview::class,
         ];
     }
 
-    protected function getTitle(): string
+    public function getTitle(): string
     {
         return __('filament-jobs-monitor::translations.title');
     }
