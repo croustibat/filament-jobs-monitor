@@ -60,6 +60,10 @@ class QueueMonitorResource extends Resource
                 Tables\Columns\TextColumn::make('queue')
                     ->label(__('filament-jobs-monitor::translations.queue'))
                     ->sortable(),
+                Tables\Columns\TextColumn::make('progress')
+                    ->label(__('filament-jobs-monitor::translations.progress'))
+                    ->formatStateUsing(fn (string $state) => "{$state}%")
+                    ->sortable(),
                 // ProgressColumn::make('progress')->label(__('filament-jobs-monitor::translations.progress'))->color('warning'),
                 Tables\Columns\TextColumn::make('started_at')
                     ->label(__('filament-jobs-monitor::translations.started_at'))
