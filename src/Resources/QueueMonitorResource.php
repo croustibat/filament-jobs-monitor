@@ -103,6 +103,11 @@ class QueueMonitorResource extends Resource
         return FilamentJobsMonitorPlugin::get()->getNavigationGroup();
     }
 
+    public static function getNavigationSort(): ?int
+    {
+        return FilamentJobsMonitorPlugin::get()->getNavigationSort();
+    }
+
     public static function getBreadcrumb(): string
     {
         return FilamentJobsMonitorPlugin::get()->getBreadcrumb();
