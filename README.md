@@ -12,12 +12,24 @@ This is a package to monitor background jobs for FilamentPHP. It is inspired by 
 
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require croustibat/filament-jobs-monitor
 ```
-You can publish the config file with:
+
+Publish and run the migrations using:
+
+```bash
+php artisan vendor:publish --tag="filament-jobs-monitor-migrations"
+php artisan migrate
+```
+
+## Usage
+
+### Configuration
+
+The global plugin config can be published using the command below:
 
 ```bash
 php artisan vendor:publish --tag="filament-jobs-monitor-config"
@@ -27,36 +39,62 @@ This is the content of the published config file:
 
 ```php
 return [
-    'navigation' => [
+    'resources' => [
         'enabled' => true,
-        'group_label' => 'Settings',
-        'icon' => 'heroicon-o-chip',
+        'label' => 'Job',
+        'plural_label' => 'Jobs',
+        'navigation_group' => 'Settings',
+        'navigation_icon' => 'heroicon-o-cpu-chip',
+        'navigation_sort' => null,
+        'navigation_count_badge' => false,
+        'resource' => Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource::class,
+    ],
+    'pruning' => [
+        'enabled' => true,
+        'retention_days' => 7,
     ],
 ];
 ```
 
-You can publish and run the migrations with:
+### Using Filament Panels
 
-```bash
-php artisan vendor:publish --tag="filament-jobs-monitor-migrations"
-php artisan migrate
+If you are using Filament Panels, you can register the Plugin to your Panel configuration. This will register the plugin's resources as well as allow you to set configuration using optional chainable methods.
+
+```php
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            \Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin::make()
+                ->label('Job')
+                ->pluralLabel('Jobs')
+                ->enableNavigation(true)
+                ->navigationIcon('heroicon-o-cpu-chip')
+                ->navigationGroup('Settings')
+                ->navigationSort(5)
+                ->navigationCountBadge(true)
+                ->enablePruning(true)
+                ->pruningRetention(7)
+                ->resource(\App\Filament\Resources\CustomJobMonitorResource::class)
+        ]);
+}
 ```
 
 ## Usage
 
-Just run a Background Job and go to the route `/admin/queue-monitors` to see the jobs. 
+Just run a Background Job and go to the route `/admin/queue-monitors` to see the jobs.
 
 ## Example
 
 Go to [example](./examples/) folder to see a Job example file.
 
-Then you can call your Job with the following code :
+Then you can call your Job with the following code:
 
 ```php
     public static function table(Table $table): Table
     {
         return $table
-        
+
         // rest of your code
         ...
 
