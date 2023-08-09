@@ -1,14 +1,18 @@
 <?php
 
-// config for Croustibat/FilamentJobsMonitor
 return [
-    'navigation' => [
+    'resources' => [
         'enabled' => true,
-        'group_label' => 'Settings',
-        'icon' => 'heroicon-o-chip',
+        'label' => 'Job',
+        'plural_label' => 'Jobs',
+        'navigation_group' => 'Settings',
+        'navigation_icon' => 'heroicon-o-cpu-chip',
+        'navigation_sort' => null,
+        'navigation_count_badge' => false,
+        'resource' => Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource::class,
     ],
     'pruning' => [
-        'activate' => true,
+        'enabled' => true,
         'retention_days' => 7,
     ],
 ];
