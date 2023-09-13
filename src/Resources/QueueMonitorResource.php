@@ -6,12 +6,15 @@ use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use RyanChandler\FilamentProgressColumn\ProgressColumn;
 
 class QueueMonitorResource extends Resource
 {
@@ -21,20 +24,20 @@ class QueueMonitorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('job_id')
+                TextInput::make('job_id')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('queue')
+                TextInput::make('queue')
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('started_at'),
-                Forms\Components\DateTimePicker::make('finished_at'),
-                Forms\Components\Toggle::make('failed')
+                DateTimePicker::make('started_at'),
+                DateTimePicker::make('finished_at'),
+                Toggle::make('failed')
                     ->required(),
-                Forms\Components\TextInput::make('attempt')
+                TextInput::make('attempt')
                     ->required(),
-                Forms\Components\Textarea::make('exception_message')
+                Textarea::make('exception_message')
                     ->maxLength(65535),
             ]);
     }
@@ -43,7 +46,7 @@ class QueueMonitorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('status')
+                TextColumn::make('status')
                     ->badge()
                     ->label(__('filament-jobs-monitor::translations.status'))
                     ->sortable()
@@ -53,32 +56,25 @@ class QueueMonitorResource extends Resource
                         'succeeded' => 'success',
                         'failed' => 'danger',
                     }),
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->label(__('filament-jobs-monitor::translations.name'))
                     ->sortable(),
-                Tables\Columns\TextColumn::make('queue')
+                TextColumn::make('queue')
                     ->label(__('filament-jobs-monitor::translations.queue'))
                     ->sortable(),
-                Tables\Columns\TextColumn::make('progress')
+                TextColumn::make('progress')
                     ->label(__('filament-jobs-monitor::translations.progress'))
                     ->formatStateUsing(fn (string $state) => "{$state}%")
                     ->sortable(),
-                // ProgressColumn::make('progress')->label(__('filament-jobs-monitor::translations.progress'))->color('warning'),
-                Tables\Columns\TextColumn::make('started_at')
+                TextColumn::make('started_at')
                     ->label(__('filament-jobs-monitor::translations.started_at'))
                     ->since()
                     ->sortable(),
             ])
+            ->defaultSort('started_at', 'desc')
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getNavigationBadge(): ?string
