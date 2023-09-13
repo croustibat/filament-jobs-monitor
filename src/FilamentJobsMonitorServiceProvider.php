@@ -2,21 +2,14 @@
 
 namespace Croustibat\FilamentJobsMonitor;
 
-use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource;
-use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentJobsMonitorServiceProvider extends PluginServiceProvider
+class FilamentJobsMonitorServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'filament-jobs-monitor';
-
-    protected array $resources = [
-        QueueMonitorResource::class,
-    ];
-
     public function configurePackage(Package $package): void
     {
-        $package->name(static::$name)
+        $package->name('filament-jobs-monitor')
             ->hasConfigFile()
             ->hasTranslations()
             ->hasMigration('create_filament-jobs-monitor_table');

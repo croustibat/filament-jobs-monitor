@@ -2,15 +2,19 @@
 
 namespace Croustibat\FilamentJobsMonitor\Resources;
 
+use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
-use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
-use RyanChandler\FilamentProgressColumn\ProgressColumn;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class QueueMonitorResource extends Resource
 {
@@ -20,20 +24,20 @@ class QueueMonitorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('job_id')
+                TextInput::make('job_id')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('queue')
+                TextInput::make('queue')
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('started_at'),
-                Forms\Components\DateTimePicker::make('finished_at'),
-                Forms\Components\Toggle::make('failed')
+                DateTimePicker::make('started_at'),
+                DateTimePicker::make('finished_at'),
+                Toggle::make('failed')
                     ->required(),
-                Forms\Components\TextInput::make('attempt')
+                TextInput::make('attempt')
                     ->required(),
-                Forms\Components\Textarea::make('exception_message')
+                Textarea::make('exception_message')
                     ->maxLength(65535),
             ]);
     }
@@ -42,67 +46,80 @@ class QueueMonitorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\BadgeColumn::make('status')
+                TextColumn::make('status')
+                    ->badge()
                     ->label(__('filament-jobs-monitor::translations.status'))
-                    ->enum([
-                        'failed' => __('filament-jobs-monitor::translations.failed'),
-                        'running' => __('filament-jobs-monitor::translations.running'),
-                        'succeeded' => __('filament-jobs-monitor::translations.succeeded'),
-                    ])
-                    ->colors([
-                        'primary' => 'running',
-                        'success' => 'succeeded',
-                        'danger' => 'failed',
-                    ])->sortable(),
-                Tables\Columns\TextColumn::make('name')
-                    ->label(__('filament-jobs-monitor::translations.name'))->sortable(),
-                Tables\Columns\TextColumn::make('queue')
-                    ->label(__('filament-jobs-monitor::translations.queue'))->sortable(),
-                ProgressColumn::make('progress')->label(__('filament-jobs-monitor::translations.progress'))->color('warning')->sortable(),
-                Tables\Columns\TextColumn::make('started_at')
+                    ->sortable()
+                    ->formatStateUsing(fn (string $state): string => __("filament-jobs-monitor::translations.{$state}"))
+                    ->color(fn (string $state): string => match ($state) {
+                        'running' => 'primary',
+                        'succeeded' => 'success',
+                        'failed' => 'danger',
+                    }),
+                TextColumn::make('name')
+                    ->label(__('filament-jobs-monitor::translations.name'))
+                    ->sortable(),
+                TextColumn::make('queue')
+                    ->label(__('filament-jobs-monitor::translations.queue'))
+                    ->sortable(),
+                TextColumn::make('progress')
+                    ->label(__('filament-jobs-monitor::translations.progress'))
+                    ->formatStateUsing(fn (string $state) => "{$state}%")
+                    ->sortable(),
+                TextColumn::make('started_at')
                     ->label(__('filament-jobs-monitor::translations.started_at'))
-                    ->since()->sortable(),
-            ])->defaultSort('started_at', 'desc')
+                    ->since()
+                    ->sortable(),
+            ])
+            ->defaultSort('started_at', 'desc')
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 
-    public static function getRelations(): array
+    public static function getNavigationBadge(): ?string
     {
-        return [
-            //
-        ];
+        return FilamentJobsMonitorPlugin::get()->getNavigationCountBadge() ? number_format(static::getModel()::count()) : null;
     }
 
-    protected static function getNavigationGroup(): string
+    public static function getModelLabel(): string
     {
-        return config('filament-jobs-monitor.navigation.group_label');
-    }
-    
-    protected static function getNavigationSort(): int
-    {
-        return config('filament-jobs-monitor.navigation.group_sort');
+        return FilamentJobsMonitorPlugin::get()->getLabel();
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getPluralModelLabel(): string
     {
-        return __('filament-jobs-monitor::translations.navigation_label');
+        return FilamentJobsMonitorPlugin::get()->getPluralLabel();
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return Str::title(static::getPluralModelLabel()) ?? Str::title(static::getModelLabel());
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return FilamentJobsMonitorPlugin::get()->getNavigationGroup();
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return FilamentJobsMonitorPlugin::get()->getNavigationSort();
     }
 
     public static function getBreadcrumb(): string
     {
-        return __('filament-jobs-monitor::translations.breadcrumb');
+        return FilamentJobsMonitorPlugin::get()->getBreadcrumb();
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
-        return (bool) config('filament-jobs-monitor.navigation.enabled');
+        return FilamentJobsMonitorPlugin::get()->shouldRegisterNavigation();
     }
 
-    protected static function getNavigationIcon(): string
+    public static function getNavigationIcon(): string
     {
-        return config('filament-jobs-monitor.navigation.icon');
+        return FilamentJobsMonitorPlugin::get()->getNavigationIcon();
     }
 
     public static function getPages(): array
