@@ -3,14 +3,21 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/croustibat/filament-jobs-monitor.svg?style=flat-square)](https://packagist.org/packages/croustibat/filament-jobs-monitor)
 [![Total Downloads](https://img.shields.io/packagist/dt/croustibat/filament-jobs-monitor.svg?style=flat-square)](https://packagist.org/packages/croustibat/filament-jobs-monitor)
 
-
 This is a package to monitor background jobs for FilamentPHP. It is inspired by Laravel Horizon and is compatible with all drivers.
 
-<img width="1440" alt="Screenshot 2023-05-29 at 16 43 07" src="https://github.com/croustibat/filament-jobs-monitor/assets/1169456/ce654e0a-c1a1-4ed3-95a8-dc3f4fa7cea9">
-<img width="1440" alt="Screenshot 2023-05-29 at 16 42 46" src="https://github.com/croustibat/filament-jobs-monitor/assets/1169456/fd7b91ac-b932-49a7-ab98-4e8ea8de0b83">
+<img width="800" alt="Screenshot 2023-09-13 at 23 18 44" src="https://github.com/croustibat/filament-jobs-monitor/assets/1169456/a5d5a088-865f-4265-bd37-13dce213f529">
+<img width="800" alt="Screenshot 2023-09-13 at 23 18 23" src="https://github.com/croustibat/filament-jobs-monitor/assets/1169456/e0a7730e-f459-4d99-8a40-5f35337385eb">
 
 
 ## Installation
+
+Check your filamentPHP version before installing:
+
+| Version | FilamentPHP | PHP                     |
+|---------|-------------|-------------------------|
+| 1.*     | 2.*         |       8.1.*             |
+| 2.*     | 3.*         |    8.1.* \| 8.2.*       |
+
 
 Install the package via composer:
 
