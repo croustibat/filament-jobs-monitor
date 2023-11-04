@@ -18,6 +18,7 @@ class QueueMonitor extends Model
         'job_id',
         'name',
         'queue',
+        'connection',
         'started_at',
         'finished_at',
         'failed',

@@ -6,7 +6,9 @@ use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
+use Filament\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -14,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 class QueueMonitorResource extends Resource
@@ -49,29 +52,45 @@ class QueueMonitorResource extends Resource
                 TextColumn::make('status')
                     ->badge()
                     ->label(__('filament-jobs-monitor::translations.status'))
-                    ->sortable()
-                    ->formatStateUsing(fn (string $state): string => __("filament-jobs-monitor::translations.{$state}"))
-                    ->color(fn (string $state): string => match ($state) {
+                    ->sortable(['failed', 'finished_at'])
+                    ->formatStateUsing(fn(string $state): string => __("filament-jobs-monitor::translations.{$state}"))
+                    ->color(fn(string $state): string => match ($state) {
                         'running' => 'primary',
                         'succeeded' => 'success',
                         'failed' => 'danger',
                     }),
                 TextColumn::make('name')
                     ->label(__('filament-jobs-monitor::translations.name'))
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('connection')
+                    ->label(__('filament-jobs-monitor::translations.connection'))
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('queue')
                     ->label(__('filament-jobs-monitor::translations.queue'))
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('progress')
                     ->label(__('filament-jobs-monitor::translations.progress'))
-                    ->formatStateUsing(fn (string $state) => "{$state}%")
+                    ->formatStateUsing(fn(string $state) => "{$state}%")
                     ->sortable(),
                 TextColumn::make('started_at')
                     ->label(__('filament-jobs-monitor::translations.started_at'))
                     ->since()
                     ->sortable(),
+                TextColumn::make('finished_at')
+                    ->label(__('filament-jobs-monitor::translations.finished_at'))
+                    ->since()
+                    ->sortable(),
             ])
             ->defaultSort('started_at', 'desc')
+            ->actions([
+                Action::make('retry')
+                    ->color('danger')
+                    ->action(fn(string $jobId) => Artisan::call('queue:retry ' . $jobId))
+                    ->requiresConfirmation(),
+            ])
             ->bulkActions([
                 DeleteBulkAction::make(),
             ]);

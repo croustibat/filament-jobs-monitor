@@ -14,6 +14,8 @@ return [
     'status' => 'Estado',
     'name' => 'Nombre',
     'queue' => 'Cola',
+    'connection' => 'Conexión',
     'progress' => 'Progreso',
-    'started_at' => 'Iniciado a las',
+    'started_at' => 'Empezó a las',
+    'finished_at' => 'Terminado en',
 ];

@@ -14,6 +14,8 @@ return [
     'status' => 'Status',
     'name' => 'Name',
     'queue' => 'Queue',
+    'connection' => 'Connection',
     'progress' => 'Progress',
-    'started_at' => 'Started at',
+    'started_at' => 'Started At',
+    'finished_at' => 'Finished At',
 ];

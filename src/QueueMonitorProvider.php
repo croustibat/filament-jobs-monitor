@@ -57,6 +57,7 @@ class QueueMonitorProvider extends ServiceProvider
         $monitor = QueueMonitor::query()->create([
             'job_id' => $jobId,
             'name' => $job->resolveName(),
+            'connection' => $job->getConnectionName(),
             'queue' => $job->getQueue(),
             'started_at' => $now,
             'attempt' => $job->attempts(),
