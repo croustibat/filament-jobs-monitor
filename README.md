@@ -63,26 +63,47 @@ return [
 ];
 ```
 
+### Extending Model
+
+Sometimes it's useful to extend the model to add some custom methods. You can do it by extending the model by creating your own model :
+
+```php 
+$ php artisan make:model MyQueueMonitor
+```
+
+Then you can extend the model by adding your own methods :
+
+```php
+
+    <?php
+
+    namespace App\Models;
+
+    use \Croustibat\FilamentJobsMonitor\Models\QueueMonitor as CroustibatQueueMonitor;
+
+    class MyQueueMonitor extends CroustibatQueueMonitor {}
+
+```
+
 ### Using Filament Panels
 
 If you are using Filament Panels, you can register the Plugin to your Panel configuration. This will register the plugin's resources as well as allow you to set configuration using optional chainable methods.
 
+For example in your `app/Providers/Filament/AdminPanelProvider.php` file:
+
 ```php
+<?php
+
+
+use \Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
+
+...
+
 public function panel(Panel $panel): Panel
 {
     return $panel
         ->plugins([
-            \Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin::make()
-                ->label('Job')
-                ->pluralLabel('Jobs')
-                ->enableNavigation(true)
-                ->navigationIcon('heroicon-o-cpu-chip')
-                ->navigationGroup('Settings')
-                ->navigationSort(5)
-                ->navigationCountBadge(true)
-                ->enablePruning(true)
-                ->pruningRetention(7)
-                ->resource(\App\Filament\Resources\CustomJobMonitorResource::class)
+            FilamentJobsMonitorPlugin::make()
         ]);
 }
 ```

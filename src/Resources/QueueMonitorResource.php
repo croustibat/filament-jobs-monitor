@@ -13,7 +13,9 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class QueueMonitorResource extends Resource
@@ -49,7 +51,6 @@ class QueueMonitorResource extends Resource
                 TextColumn::make('status')
                     ->badge()
                     ->label(__('filament-jobs-monitor::translations.status'))
-                    ->sortable()
                     ->formatStateUsing(fn (string $state): string => __("filament-jobs-monitor::translations.{$state}"))
                     ->color(fn (string $state): string => match ($state) {
                         'running' => 'primary',
@@ -74,6 +75,28 @@ class QueueMonitorResource extends Resource
             ->defaultSort('started_at', 'desc')
             ->bulkActions([
                 DeleteBulkAction::make(),
+            ])
+            ->filters([
+                SelectFilter::make('status')
+                    ->options([
+                        'running' => 'Running',
+                        'succeeded' => 'Succeeded',
+                        'failed' => 'Failed',
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        if ($data['value'] === 'succeeded') {
+                            return $query
+                                ->whereNotNull('finished_at')
+                                ->where('failed', 0);
+                        } elseif ($data['value'] === 'failed') {
+                            return $query
+                                ->whereNotNull('finished_at')
+                                ->where('failed', 1);
+                        } elseif ($data['value'] === 'running') {
+                            return $query
+                                ->whereNull('finished_at');
+                        }
+                    }),
             ]);
     }
 

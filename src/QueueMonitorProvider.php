@@ -78,7 +78,7 @@ class QueueMonitorProvider extends ServiceProvider
     /**
      * Finish Queue Monitoring for Job.
      */
-    protected static function jobFinished(JobContract $job, bool $failed = false, \Throwable $exception = null): void
+    protected static function jobFinished(JobContract $job, bool $failed = false, ?\Throwable $exception = null): void
     {
         $monitor = QueueMonitor::query()
             ->where('job_id', self::getJobId($job))
@@ -86,7 +86,7 @@ class QueueMonitorProvider extends ServiceProvider
             ->orderByDesc('started_at')
             ->first();
 
-        if (null === $monitor) {
+        if ($monitor === null) {
             return;
         }
 
@@ -96,7 +96,7 @@ class QueueMonitorProvider extends ServiceProvider
             'failed' => $failed,
         ];
 
-        if (null !== $exception) {
+        if ($exception !== null) {
             $attributes += [
                 'exception_message' => mb_strcut($exception->getMessage(), 0, 65535),
             ];

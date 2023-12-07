@@ -4,6 +4,7 @@ namespace Croustibat\FilamentJobsMonitor\Models;
 
 use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use Illuminate\Contracts\Queue\Job as JobContract;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -74,7 +75,7 @@ class QueueMonitor extends Model
             return true;
         }
 
-        return null !== $this->finished_at;
+        return $this->finished_at !== null;
     }
 
     /**
@@ -102,7 +103,7 @@ class QueueMonitor extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function prunable()
+    public function prunable(): Builder|bool
     {
         if (FilamentJobsMonitorPlugin::get()->getPruning()) {
             return static::where('created_at', '<=', now()->subDays(FilamentJobsMonitorPlugin::get()->getPruningRetention()));
