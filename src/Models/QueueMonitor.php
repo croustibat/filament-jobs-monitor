@@ -4,11 +4,11 @@ namespace Croustibat\FilamentJobsMonitor\Models;
 
 use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use Illuminate\Contracts\Queue\Job as JobContract;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Hash;
 
 class QueueMonitor extends Model
@@ -75,7 +75,7 @@ class QueueMonitor extends Model
             return true;
         }
 
-        return null !== $this->finished_at;
+        return $this->finished_at !== null;
     }
 
     /**

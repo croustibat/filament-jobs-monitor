@@ -15,9 +15,8 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Support\Str;
 
 class QueueMonitorResource extends Resource
 {
@@ -89,13 +88,11 @@ class QueueMonitorResource extends Resource
                             return $query
                                 ->whereNotNull('finished_at')
                                 ->where('failed', 0);
-                        }
-                        else if ($data['value'] === 'failed') {
+                        } elseif ($data['value'] === 'failed') {
                             return $query
                                 ->whereNotNull('finished_at')
                                 ->where('failed', 1);
-                        }
-                        else if ($data['value'] === 'running') {
+                        } elseif ($data['value'] === 'running') {
                             return $query
                                 ->whereNull('finished_at');
                         }

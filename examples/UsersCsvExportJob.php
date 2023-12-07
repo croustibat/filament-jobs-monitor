@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UsersCsvExportJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, QueueProgress;
+    use Dispatchable, InteractsWithQueue, Queueable, QueueProgress, SerializesModels;
 
     /**
      * The data to be exported as CSV.
