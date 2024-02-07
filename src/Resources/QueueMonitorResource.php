@@ -122,7 +122,7 @@ class QueueMonitorResource extends Resource
 
     public static function getCluster(): ?string
     {
-        return FilamentJobsMonitorPlugin::get()->getNavigationGroup();
+        return FilamentJobsMonitorPlugin::get()->getCluster();
     }
 
     public static function getNavigationGroup(): ?string
