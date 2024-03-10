@@ -60,8 +60,13 @@ return [
         'enabled' => true,
         'retention_days' => 7,
     ],
+    'queues' => [
+        'default'
+    ],
 ];
 ```
+
+**NOTE:** Since there isn't a universal way to retrieve all used queues, it's necessary to define them to obtain all pending jobs. 
 
 ### Extending Model
 
