@@ -25,7 +25,7 @@ class FilamentJobsMonitorPlugin implements Plugin
      * The resource navigation status.
      */
     protected ?bool $navigation = null;
-    
+
     /**
      * The resource cluster.
      */
