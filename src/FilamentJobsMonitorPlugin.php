@@ -25,6 +25,11 @@ class FilamentJobsMonitorPlugin implements Plugin
      * The resource navigation status.
      */
     protected ?bool $navigation = null;
+    
+    /**
+     * The resource cluster.
+     */
+    protected ?string $cluster = null;
 
     /**
      * The resource navigation group.
@@ -153,6 +158,24 @@ class FilamentJobsMonitorPlugin implements Plugin
     public function pluralLabel(string $pluralLabel): static
     {
         $this->pluralLabel = $pluralLabel;
+
+        return $this;
+    }
+
+    /**
+     * Get the resource navigation group.
+     */
+    public function getCluster(): ?string
+    {
+        return $this->cluster ?? config('filament-jobs-monitor.resources.cluster');
+    }
+
+    /**
+     * Set the resource navigation group.
+     */
+    public function cluster(string $cluster): static
+    {
+        $this->cluster = $cluster;
 
         return $this;
     }

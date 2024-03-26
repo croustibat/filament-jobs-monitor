@@ -120,6 +120,11 @@ class QueueMonitorResource extends Resource
         return Str::title(static::getPluralModelLabel()) ?? Str::title(static::getModelLabel());
     }
 
+    public static function getCluster(): ?string
+    {
+        return FilamentJobsMonitorPlugin::get()->getCluster();
+    }
+
     public static function getNavigationGroup(): ?string
     {
         return FilamentJobsMonitorPlugin::get()->getNavigationGroup();
