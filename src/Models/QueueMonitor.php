@@ -59,11 +59,7 @@ class QueueMonitor extends Model
 
     public static function getJobId(JobContract $job): string|int
     {
-        if ($jobId = $job->getJobId()) {
-            return $jobId;
-        }
-
-        return Hash::make($job->getRawBody());
+        return $job->payload()['uuid'] ?? Hash::make($job->getRawBody());
     }
 
     /**
