@@ -163,21 +163,11 @@ class FilamentJobsMonitorPlugin implements Plugin
     }
 
     /**
-     * Get the resource navigation group.
+     * Get the resource cluster.
      */
-    public function getCluster(): ?string
+    public function getClusterName(): ?string
     {
-        return $this->cluster ?? config('filament-jobs-monitor.resources.cluster');
-    }
-
-    /**
-     * Set the resource navigation group.
-     */
-    public function cluster(string $cluster): static
-    {
-        $this->cluster = $cluster;
-
-        return $this;
+        return config('filament-jobs-monitor.resources.cluster');
     }
 
     /**
