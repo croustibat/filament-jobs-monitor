@@ -163,7 +163,7 @@ class FilamentJobsMonitorPlugin implements Plugin
     }
 
     /**
-     * Get the resource cluster.
+     * Get the resource cluster name.
      */
     public function getClusterName(): ?string
     {

@@ -2,6 +2,18 @@
 
 All notable changes to `filament-jobs-monitor` will be documented in this file.
 
+## 2.3.0 - 2024-03-26
+
+https://github.com/croustibat/filament-jobs-monitor/releases/tag/2.3.0
+
+## 2.2.0 - 2024-02-15
+
+https://github.com/croustibat/filament-jobs-monitor/releases/tag/2.2.0
+
+## 2.1.0 - 2023-12-08
+
+https://github.com/croustibat/filament-jobs-monitor/releases/tag/2.1.0
+
 ## 2.0.0 - 2023-08-09
 
 - Add support for Filament v3

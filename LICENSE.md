@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) croustibat <baptiste@derniercri.io>
+Copyright (c) croustibat <baptiste@dark-matter.fr>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
