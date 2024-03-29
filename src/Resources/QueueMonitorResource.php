@@ -4,9 +4,10 @@ namespace Croustibat\FilamentJobsMonitor\Resources;
 
 use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use Croustibat\FilamentJobsMonitor\Models\QueueMonitor;
-use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages;
+use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Pages\ListQueueMonitors;
 use Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource\Widgets\QueueStatsOverview;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -15,7 +16,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class QueueMonitorResource extends Resource
@@ -122,7 +123,7 @@ class QueueMonitorResource extends Resource
 
     public static function getCluster(): ?string
     {
-        return FilamentJobsMonitorPlugin::get()->getCluster();
+        return config('filament-jobs-monitor.resources.cluster');
     }
 
     public static function getNavigationGroup(): ?string
@@ -153,7 +154,7 @@ class QueueMonitorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListQueueMonitors::route('/'),
+            'index' => ListQueueMonitors::route('/'),
         ];
     }
 
