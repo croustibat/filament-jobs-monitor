@@ -247,15 +247,15 @@ class FilamentJobsMonitorPlugin implements Plugin
      */
     public function shouldRegisterNavigation(): bool
     {
-        return $this->navigation ?? config('filament-jobs-monitor.resources.enabled');
+        return $this->evaluate($this->navigation) === true ?? config('filament-jobs-monitor.resources.enabled');
     }
 
     /**
      * Enable the resource navigation.
      */
-    public function enableNavigation(bool $status = true): static
+    public function enableNavigation(bool|Closure $callback = true): static
     {
-        $this->navigation = $status;
+        $this->navigation = $callback;
 
         return $this;
     }
