@@ -34,7 +34,7 @@ class FilamentJobsMonitorPlugin implements Plugin
     /**
      * The resource navigation group.
      */
-    protected ?string $navigationGroup = null;
+    protected string|Closure|null $navigationGroup = null;
 
     /**
      * The resource navigation icon.
@@ -137,7 +137,7 @@ class FilamentJobsMonitorPlugin implements Plugin
     /**
      * Set the resource label.
      */
-    public function label(string $label): static
+    public function label(string|Closure $label): static
     {
         $this->label = $label;
 
@@ -155,7 +155,7 @@ class FilamentJobsMonitorPlugin implements Plugin
     /**
      * Set the plural resource label.
      */
-    public function pluralLabel(string $pluralLabel): static
+    public function pluralLabel(string|Closure $pluralLabel): static
     {
         $this->pluralLabel = $pluralLabel;
 
@@ -175,13 +175,13 @@ class FilamentJobsMonitorPlugin implements Plugin
      */
     public function getNavigationGroup(): ?string
     {
-        return $this->navigationGroup ?? config('filament-jobs-monitor.resources.navigation_group');
+        return $this->evaluate($this->navigationGroup) ?? config('filament-jobs-monitor.resources.navigation_group');
     }
 
     /**
      * Set the resource navigation group.
      */
-    public function navigationGroup(string $navigationGroup): static
+    public function navigationGroup(string|Closure $navigationGroup): static
     {
         $this->navigationGroup = $navigationGroup;
 
