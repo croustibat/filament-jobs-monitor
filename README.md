@@ -13,10 +13,10 @@ This is a package to monitor background jobs for FilamentPHP. It is inspired by 
 
 Check your filamentPHP version before installing:
 
-| Version | FilamentPHP | PHP                     |
-|---------|-------------|-------------------------|
-| 1.*     | 2.*         |       8.1.*             |
-| 2.*     | 3.*         |    8.1.* \| 8.2.*       |
+| Version | FilamentPHP | PHP            |
+| ------- | ----------- | -------------- |
+| 1.*     | 2.*         | 8.1.*          |
+| 2.*     | 3.*         | 8.1.* \| 8.2.* |
 
 
 Install the package via composer:
@@ -148,6 +148,33 @@ Then you can call your Job with the following code:
         ])
     }
 ```
+
+### Enabling navigation
+
+
+````php
+        // AdminPanelProvider.php
+        ->plugins([
+            // ...
+            FilamentJobsMonitorPlugin::make()
+                ->enableNavigation(),
+        ])
+````
+
+Or you can use a closure to enable navigation only for specific users:
+
+```php
+
+        // AdminPanelProvider.php
+        ->plugins([
+            // ...
+            FilamentJobsMonitorPlugin::make()
+                ->enableNavigation(
+                    fn () => auth()->user()->can('view_queue_job') || auth()->user()->can('view_any_queue_job)'),
+                ),
+        ])
+```
+
 
 ## Changelog
 
