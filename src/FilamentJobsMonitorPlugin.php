@@ -27,6 +27,11 @@ class FilamentJobsMonitorPlugin implements Plugin
     protected ?bool $navigation = null;
 
     /**
+     * The resource cluster.
+     */
+    protected ?string $cluster = null;
+
+    /**
      * The resource navigation group.
      */
     protected ?string $navigationGroup = null;
@@ -155,6 +160,14 @@ class FilamentJobsMonitorPlugin implements Plugin
         $this->pluralLabel = $pluralLabel;
 
         return $this;
+    }
+
+    /**
+     * Get the resource cluster name.
+     */
+    public function getClusterName(): ?string
+    {
+        return config('filament-jobs-monitor.resources.cluster');
     }
 
     /**

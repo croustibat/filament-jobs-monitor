@@ -10,6 +10,7 @@ return [
         'navigation_sort' => null,
         'navigation_count_badge' => false,
         'resource' => Croustibat\FilamentJobsMonitor\Resources\QueueMonitorResource::class,
+        'cluster' => null,
     ],
     'pruning' => [
         'enabled' => true,
