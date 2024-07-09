@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
     'breadcrumb' => 'Monitor frontových úloh',
