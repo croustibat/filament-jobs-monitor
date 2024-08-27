@@ -15,5 +15,6 @@ return [
     "status" => "Stato",
     "succeeded" => "Riuscito",
     "title" => "Lavori in coda",
-    "total_jobs" => "Totale lavori eseguiti"
+    "total_jobs" => "Totale lavori eseguiti",
+    "details" => "Dettagli"
 ];

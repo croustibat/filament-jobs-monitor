@@ -12,6 +12,7 @@ class FilamentJobsMonitorServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package->name(static::$name)
+            ->hasViews()
             ->hasConfigFile()
             ->hasTranslations()
             ->hasMigration('create_filament-jobs-monitor_table');

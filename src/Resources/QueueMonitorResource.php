@@ -18,6 +18,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Filament\Tables\Actions\Action as FilamentTableAction;
 
 class QueueMonitorResource extends Resource
 {
@@ -74,6 +75,17 @@ class QueueMonitorResource extends Resource
                     ->sortable(),
             ])
             ->defaultSort('started_at', 'desc')
+            ->actions([
+                FilamentTableAction::make('details')
+                    ->label(__('filament-jobs-monitor::translations.details'))
+                    ->icon('heroicon-o-information-circle')
+                    ->modalContent(fn (QueueMonitor $queueMonitor) => view('filament-jobs-monitor::queue-monitor-details',[
+                        'exception_message' => $queueMonitor->exception_message,
+                        'failed' => $queueMonitor->failed,
+                        'attempts' => $queueMonitor->attempt,
+                    ]))
+                    ->modalSubmitAction(false),
+            ])
             ->bulkActions([
                 DeleteBulkAction::make(),
             ])
