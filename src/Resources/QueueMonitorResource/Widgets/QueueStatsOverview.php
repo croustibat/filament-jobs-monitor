@@ -23,14 +23,14 @@ class QueueStatsOverview extends BaseWidget
             ->first();
 
         $queueSize = collect(config('filament-jobs-monitor.queues') ?? ['default'])
-            ->map(fn(string $queue): int => Queue::size($queue))
+            ->map(fn (string $queue): int => Queue::size($queue))
             ->sum();
 
         return [
             Stat::make(__('filament-jobs-monitor::translations.total_jobs'), $aggregatedInfo->count ?? 0),
             Stat::make(__('filament-jobs-monitor::translations.pending_jobs'), $queueSize),
-            Stat::make(__('filament-jobs-monitor::translations.execution_time'), ($aggregatedInfo->total_time_elapsed ?? 0) . 's'),
-            Stat::make(__('filament-jobs-monitor::translations.average_time'), ceil((float) $aggregatedInfo->average_time_elapsed) . 's' ?? 0),
+            Stat::make(__('filament-jobs-monitor::translations.execution_time'), ($aggregatedInfo->total_time_elapsed ?? 0).'s'),
+            Stat::make(__('filament-jobs-monitor::translations.average_time'), ceil((float) $aggregatedInfo->average_time_elapsed).'s' ?? 0),
         ];
     }
 }
