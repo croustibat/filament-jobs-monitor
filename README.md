@@ -13,10 +13,10 @@ This is a package to monitor background jobs for FilamentPHP. It is inspired by 
 
 Check your filamentPHP version before installing:
 
-| Version | FilamentPHP | PHP            |
-| ------- | ----------- | -------------- |
-| 1.*     | 2.*         | 8.1.*          |
-| 2.*     | 3.*         | 8.1.* \| 8.2.* |
+| Version | FilamentPHP | PHP   |
+| ------- | ----------- |-------|
+| 1.*     | 2.*         | 8.1   |
+| 2.*     | 3.*         | \>= 8.1 |
 
 
 Install the package via composer:
