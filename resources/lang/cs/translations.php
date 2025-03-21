@@ -16,4 +16,5 @@ return [
     'queue' => 'Fronta',
     'progress' => 'Pokrok',
     'started_at' => 'Čas spuštění',
+    'details' => 'Podrobnosti',
 ];

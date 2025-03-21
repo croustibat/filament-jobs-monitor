@@ -17,4 +17,5 @@ return [
     'queue' => 'File',
     'progress' => 'Progression',
     'started_at' => 'Débuté à',
+    'details' => 'Détails',
 ];

@@ -17,4 +17,5 @@ return [
     'queue' => 'Front',
     'progress' => 'Progres',
     'started_at' => 'Začaté',
+    'details' => 'Detaily',
 ];
