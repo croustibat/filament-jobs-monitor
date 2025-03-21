@@ -12,13 +12,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action as FilamentTableAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
-use Filament\Tables\Actions\Action as FilamentTableAction;
 
 class QueueMonitorResource extends Resource
 {
@@ -79,7 +79,7 @@ class QueueMonitorResource extends Resource
                 FilamentTableAction::make('details')
                     ->label(__('filament-jobs-monitor::translations.details'))
                     ->icon('heroicon-o-information-circle')
-                    ->modalContent(fn (QueueMonitor $queueMonitor) => view('filament-jobs-monitor::queue-monitor-details',[
+                    ->modalContent(fn (QueueMonitor $queueMonitor) => view('filament-jobs-monitor::queue-monitor-details', [
                         'exception_message' => $queueMonitor->exception_message,
                         'failed' => $queueMonitor->failed,
                         'attempts' => $queueMonitor->attempt,
