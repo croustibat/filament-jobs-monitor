@@ -93,7 +93,7 @@ class QueueMonitorResource extends Resource
                 SelectFilter::make('status')
                     ->label(__('filament-jobs-monitor::translations.status'))
                     ->options([
-                        'running' => '__('filament-jobs-monitor::translations.running')',
+                        'running' => __('filament-jobs-monitor::translations.running'),
                         'succeeded' => __('filament-jobs-monitor::translations.succeeded'),
                         'failed' => __('filament-jobs-monitor::translations.failed'),
                     ])
